@@ -3,9 +3,11 @@ package io.keyless.scenariodeveloperquickstart
 import android.app.Application
 import io.keyless.sdk.Keyless
 import io.keyless.sdk.configurations.DeEnrollConfig.BiomDeEnrollConfig
+import io.keyless.sdk.configurations.LogsConfiguration
 import io.keyless.sdk.configurations.SetupConfig
 import io.keyless.sdk.configurations.auth.BiomAuthConfig
 import io.keyless.sdk.configurations.enroll.BiomEnrollConfig
+import io.keyless.sdk.logger.LogLevels
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -26,7 +28,14 @@ class KeylessWrapper {
         hosts: List<String>
     ): Result<Unit> = suspendCoroutine { continuation ->
 
-        val setupConfig = SetupConfig(apiKey = apiKey, hosts = hosts)
+        val setupConfig = SetupConfig(
+            apiKey = apiKey,
+            hosts = hosts,
+            keylessLogsConfiguration = LogsConfiguration (
+                enabled = true,
+                logLevel = LogLevels.TRACE
+            )
+        )
 
         Keyless.configure(setupConfig) { result ->
             when (result) {
