@@ -26,7 +26,10 @@ class KeylessWrapper {
         hosts: List<String>
     ): Result<Unit> = suspendCoroutine { continuation ->
 
-        val setupConfig = SetupConfig(apiKey = apiKey, hosts = hosts)
+        val setupConfig = SetupConfig(
+            apiKey = apiKey,
+            hosts = hosts
+        )
 
         Keyless.configure(setupConfig) { result ->
             when (result) {

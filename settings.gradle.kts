@@ -24,7 +24,7 @@ val cloudsmithProperties = Properties().apply {
     }
 }
 
-val cloudsmithTokenPartners: String = cloudsmithProperties.getProperty("cloudsmithTokenPartners", "")
+val cloudsmithToken: String = cloudsmithProperties.getProperty("cloudsmithToken", "")
 
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
@@ -34,7 +34,7 @@ dependencyResolutionManagement {
         mavenCentral()
 
         maven {
-            setUrl("https://dl.cloudsmith.io/$cloudsmithTokenPartners/keyless/partners/maven/")
+            setUrl("https://dl.cloudsmith.io/$cloudsmithToken/keyless/keyless/maven/")
         }
     }
 }
